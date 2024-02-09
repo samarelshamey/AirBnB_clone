@@ -3,6 +3,9 @@
 import models
 from uuid import uuid4
 from datetime import datetime
+from models.engine.file_storage import FileStorage
+
+storage = FileStorage()
 
 
 class BaseModel:
@@ -27,7 +30,6 @@ class BaseModel:
         else:
             models.storage.new(self)
 
-
     def __str__(self):
         """print format"""
         retutn "[{}] ({}) {}".format(self.__class__.__name__,
@@ -37,6 +39,7 @@ class BaseModel:
         """update attr update_at with the current time"""
 
         self.update_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """return a dict containing all k/v of dict of the instance"""
