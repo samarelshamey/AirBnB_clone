@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """defines all common attributes/methods for other classes"""
-import models
-from uuid import uuid4
+
+import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+import models
 
 storage = FileStorage()
 
@@ -16,7 +16,12 @@ class BaseModel:
         Args:
             args: arguments
             kwargs: key and value of attrs
+        Attributes:
+            id: class id
+            created_at: datetime created at
+            updated_at: datetime updated at
         """
+
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
         self.created_at = datetime.today()
@@ -32,8 +37,8 @@ class BaseModel:
 
     def __str__(self):
         """print format"""
-        retutn "[{}] ({}) {}".format(self.__class__.__name__,
-                                     self.id, self.__dict__)
+        cls_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)
 
     def save(self):
         """update attr update_at with the current time"""
