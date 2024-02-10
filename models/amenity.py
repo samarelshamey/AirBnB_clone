@@ -4,6 +4,11 @@ from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """amenity class"""
+    """
+    amenity class
+
+    Attributes:
+        name: name of amneity
+    """
 
     name = ""

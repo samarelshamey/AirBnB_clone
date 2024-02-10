@@ -5,5 +5,10 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """state class"""
+    """state class
+
+    Attributes:
+        name: name of state
+    """
+
     name = ""
