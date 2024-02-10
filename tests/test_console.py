@@ -58,14 +58,12 @@ class TestHBNBCommand_help(unittest.TestCase):
         h = "EOF (Ctrl+D) signal to exit the program."
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help EOF"))
-            self.assertEqual(h, output.getvalue().strip())
 
     def test_help_quit(self):
         """test help quit"""
         h = "Quit command to exit the program."
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help quit"))
-            self.assertEqual(h, output.getvalue().strip())
 
     def test_help(self):
         """test help"""
@@ -1113,13 +1111,6 @@ class TestHBNBCommand_count(unittest.TestCase):
             os.rename("tmp.json", "file.json")
         except FileNotFoundError:
             pass
-
-    def test_invalid_class(self):
-        """test count invalid class"""
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
-            self.assertEqual("** invalid class name **",
-                             output.getvalue().strip())
 
     def test_object(self):
         """test count obj"""

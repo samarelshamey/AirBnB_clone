@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-"""
-Module for FilStorage unittest
+"""Module for FilStorage unittest
+Unittest classes:
+    TestFileStorage_instantiation
+    TestFileStorage_methods
 """
 import os
 import json
 import models
 import unittest
+from datetime import datetime
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
