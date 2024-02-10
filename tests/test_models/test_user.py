@@ -15,7 +15,7 @@ class TestUser_instantiation(unittest.TestCase):
         """test no arguments"""
         self.assertEqual(User, type(User()))
 
-    def test_created_at(Self):
+    def test_created_at(self):
         """test created at attr"""
         self.assertEqual(datetime, type(User().created_at))
 
@@ -31,7 +31,7 @@ class TestUser_instantiation(unittest.TestCase):
         """test id"""
         self.assertEqual(str, type(User().id))
 
-    def test_email(Self):
+    def test_email(self):
         """test email"""
         self.assertEqual(str, type(User.email))
 
@@ -39,11 +39,11 @@ class TestUser_instantiation(unittest.TestCase):
         """test password"""
         self.assertEqual(str, type(User.password))
 
-    def test_firstname(Self):
+    def test_firstname(self):
         """test first name"""
         self.assertEqual(str, type(User.first_name))
 
-    def test_lastname(Self):
+    def test_lastname(self):
         """test last name"""
         self.assertEqual(str, type(User.last_name))
 
