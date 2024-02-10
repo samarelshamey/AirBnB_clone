@@ -111,7 +111,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(objdict["{}.{}".format(args[0], args[1])])
 
-
     def do_destroy(self, arg):
         """delete instance based on cls name & id"""
         argl = parse_argument(arg)
@@ -196,7 +195,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
-
 
 
 if __name__ == '__main__':
