@@ -22,24 +22,22 @@ class BaseModel:
 
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
-        if kwargs:
+        if len(kwargs) != 0:
             for k, v in kwargs.items():
-                if k == "_class__":
-                    continue
-                elif k == "created_at" or k == "updated_at":
-                    setattr(self, k, datetime.strptime(v, time_format))
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = datetime.strptime(v, tform)
                 else:
-                    setattr(self, k, v)
+                    self.__dict__[k] = v
         else:
             models.storage.new(self)
 
     def save(self):
         """update attr update_at with the current time"""
 
-        self.update_at = datetime.utcnow()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):

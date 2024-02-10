@@ -42,7 +42,7 @@ class TestBasemodel(unittest.TestCase):
 
         self.assertTrue(str(model).startswith('[BaseModel]'))
 
-        self.assertIn(model.id, str(my_model))
+        self.assertIn(model.id, str(model))
 
         self.assertIn(str(model.__dict__), str(model))
 
@@ -65,8 +65,8 @@ class TestBasemodel(unittest.TestCase):
         self.assertIsInstance(model_dict, dict)
 
         self.assertEqual(model_dict["__class__"], 'BaseModel')
-        self.assertEqual(model_dict['id'], my_model.id)
+        self.assertEqual(model_dict['id'], model.id)
         self.assertEqual(model_dict['created_at'],
                          model.created_at.isoformat())
         self.assertEqual(model_dict["updated_at"],
-                         model.created_at.isoformat())
+                         model.updated_at.isoformat())
