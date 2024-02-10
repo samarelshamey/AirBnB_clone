@@ -2,6 +2,7 @@
 """BaseModel unittest module"""
 
 import os
+from uuid import uuid4
 import unittest
 from models.base_model import BaseModel
 
