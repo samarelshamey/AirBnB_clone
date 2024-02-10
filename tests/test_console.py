@@ -33,7 +33,8 @@ class TestHBNBCommand_prompting(unittest.TestCase):
 
     def test_str(self):
         """test prompt string"""
-                self.assertEqual("(hbnb) ", HBNBCommand.prompt)
+        self.assertEqual("(hbnb) ", HBNBCommand.prompt)
+
 
 class TestHBNBCommand_exit(unittest.TestCase):
     """unittest for exit"""
@@ -48,14 +49,16 @@ class TestHBNBCommand_exit(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("quit"))
 
+
 class TestHBNBCommand_help(unittest.TestCase):
     """test help"""
-     def test_help_EOF(self):
-         """test help EOF"""
-         h = "EOF (Ctrl+D) signal to exit the program."
-         with patch("sys.stdout", new=StringIO()) as output:
-             self.assertFalse(HBNBCommand().onecmd("help EOF"))
-             self.assertEqual(h, output.getvalue().strip())
+
+    def test_help_EOF(self):
+        """test help EOF"""
+        h = "EOF (Ctrl+D) signal to exit the program."
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("help EOF"))
+            self.assertEqual(h, output.getvalue().strip())
 
     def test_help_quit(self):
         """test help quit"""
@@ -72,6 +75,7 @@ class TestHBNBCommand_help(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertEqual(h, output.getvalue().strip())
+
 
 class TestHBNBCommand_create(unittest.TestCase):
     """test create"""
@@ -185,8 +189,8 @@ class TestHBNBCommand_show(unittest.TestCase):
         except IOError:
             pass
 
-   def test_invalid_class(self):
-       """test show invalid class"""
+    def test_invalid_class(self):
+        """test show invalid class"""
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("show MyModel"))
@@ -422,6 +426,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             command = "Review.show({})".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertEqual(obj.__str__(), output.getvalue().strip())
+
 
 class TestHBNBCommand_update(unittest.TestCase):
     """test update"""
@@ -1084,6 +1089,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         test_dict = storage.all()["Place.{}".format(testId)].__dict__
         self.assertEqual(9.8, test_dict["latitude"])
 
+
 class TestHBNBCommand_count(unittest.TestCase):
     """test count"""
 
@@ -1152,6 +1158,7 @@ class TestHBNBCommand_count(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("Review.count()"))
             self.assertEqual("1", output.getvalue().strip())
+
 
 class TestHBNBCommand_destroy(unittest.TestCase):
     """test destroy"""
@@ -1415,6 +1422,7 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             command = "Review.destory({})".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertNotIn(obj, storage.all())
+
 
 class TestHBNBCommand_all(unittest.TestCase):
     """test all"""
