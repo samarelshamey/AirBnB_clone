@@ -12,7 +12,12 @@ from models.city import City
 
 
 class FileStorage:
-    """storage class"""
+    """storage class
+
+    Attributes:
+        __file_path: name of file to save obj to
+        __objects: objects
+    """
 
     __file_path = "file.json"
     __objects = {}
