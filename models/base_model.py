@@ -24,21 +24,19 @@ class BaseModel:
 
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
-        if len(kwargs) != 0:
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
+
+        if kwargs:
             for k, v in kwargs.items():
-                if k == "created_at" or k == "updated_at":
-                    self.__dict__[k] = datetime.strptime(v, tform)
+                if k == "_class__":
+                    continue
+                elif k == "created_at" or k == "updated_at":
+                    setattr(self, k, datetime.strptime(v, time_format))
                 else:
-                    self.__dict__[k] = v
+                    setattr(self, k, v)
         else:
             models.storage.new(self)
-
-    def __str__(self):
-        """print format"""
-        cls_name = self.__class__.__name__
-        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)
 
     def save(self):
         """update attr update_at with the current time"""
@@ -53,3 +51,8 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
+
+    def __str__(self):
+        """print format"""
+        cls_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)
