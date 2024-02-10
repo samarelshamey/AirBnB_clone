@@ -11,7 +11,6 @@ from models.state import State
 from models.city import City
 
 
-
 class FileStorage:
     """storage class"""
 
