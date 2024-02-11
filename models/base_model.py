@@ -22,8 +22,8 @@ class BaseModel:
 
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
 
         if len(kwargs) != 0:
             for k, v in kwargs.items():
@@ -37,7 +37,7 @@ class BaseModel:
     def save(self):
         """update attr update_at with the current time"""
 
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.today()
         models.storage.save()
 
     def to_dict(self):
